@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="parallax-container">
+    {% for news_item in news_items %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ news_item.author }}</a>
+          </div>
+          <h2><a class="article-title" href="#">{{ news_item.title }}</a></h2>
+          <p class="article-content">{{ news_item.content }}</p>
+        </div>
+        <div class="news-actions">
+          <form action="/like_post" method="post">
+            <input type="hidden" name="post_id" value="{{ news_item.id }}">
+            <button class="like-button">Like: {{ news_item.likes }}</button>
+          </form>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+{% endblock content %}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recent News</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Recent News</h1>
+
+  <ul class="news-list">
+    {% for news_item in news_items %}
+      <li class="news-item">
+        <div class="news-header">
+          <h2>{{ news_item.title }}</h2>
+          <span class="author">{{ news_item.author }}</span>
+        </div>
+
+        <div class="news-content">
+          <p>{{ news_item.content }}</p>
+        </div>
+
+        <div class="news-actions">
+          <button class="like-button">Like</button>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <script src="script.js"></script>
+</body>
+</html>

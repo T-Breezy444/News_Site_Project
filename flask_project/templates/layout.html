@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <!-- favicon -->
+    <link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwcHx0cHSAXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4eJBDjyqv//////x8gIg8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACYmJQj/////8dSh//LRmf//////Hx8iCQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoYHgX/////8dGd//TJUv/uuhH/8NCi//////8eHiQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAiKAL/////78JP//HPjP/ruir/7bwz/+u/bf/rujr//////zEvNAIAAAAAAAAAAAAAAAAAAAAAAAAAAP///wH/////7MV5/+i9cv/w0KD/5KwP/+3CVP/uypH/8NCX/+a0R///////gYOIAQAAAAAAAAAAAAAAAAAAAAD/////4Ksv//DUn//oumj/5bNU/+i3Nf/ltFX/68R2/+a4ZP/pv2z/679G//////8AAAAAAAAAAAAAAAD/////2p0O/+SxUP/ksVD/57hf//PYrv/ksVD/5LFQ//LYrv/ls1P/5bJR/+WyUf/hrj3/+vn5/wAAAAAdHB8Q89iz/+WzU//ls1P/5bNT//PYs//z2LP/68Bx//PZrP/z2aj/89iz/+a1Vf/ou2H/8tiq/9qmWf8eHSEbKScrNvPYs//z2Kr/7cN2//PYs//z2LP/8929//Tr3P/069z/89iz//PYs//ouFj/89iz//PZq//vzJn/Hh0gRhweJAbs06n/8NGl//PYtP/069z/9Ovc//Tr3P/069z/9Ovc//Tr3P/069z/9Ovc//PYs//qxID////+/xgWHAwAAAAAHB4kBv779//qy5v/8uLJ//Pm0f/059L/9OfS//Tn0v/059L/8+bQ//HfxP/ox5b//////yQjIgYAAAAAAAAAAAAAAAAAAAAAx8bGw/79/P/mvYP/5Lt7/+nFjP/ow4r/5bx9/+fBif//////HRwgNgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQHAhwZHwonJikmMjE0NiEhIQwLDA4CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD+fwAA/D8AAPgfAADwDwAA4AcAAMADAACAAQAAgAEAAIABAACAAQAAwAMAAOAPAAD//wAA//8AAA==" rel="icon" type="image/x-icon">
+
+      
+
+    {% if title %}
+        <title>Octobers Radio - {{ title }}</title>
+    {% else %}
+        <title>Octobers Radio</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Octobers Radio Forumn</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/">Home</a>
+              <a class="nav-item nav-link" href="/about">About</a>
+              <a class="nav-item nav-link" href="/user">Profile</a>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="/login">Login</a>
+              <a class="nav-item nav-link" href="/register">Register</a>           
+	    </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
