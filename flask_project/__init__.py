@@ -1,26 +1,28 @@
 import json
-import requests
 import time
 import datetime
+from os import environ as env
+from functools import wraps
+import requests
 from jwt import algorithms, decode
 from os import environ as env
 from urllib.parse import quote_plus, urlencode
 from authlib.integrations.flask_client import OAuth
 from dotenv import find_dotenv, load_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from models import db, Post, User
 from flask import Flask, jsonify, render_template, url_for, flash, redirect, session, request
-from functools import wraps
+from flask_talisman import Talisman
+from models import db, Post, User
 
 ENV_FILE = find_dotenv()
 if ENV_FILE:
-	load_dotenv(ENV_FILE)
+    load_dotenv(ENV_FILE)
 
 app = Flask(__name__)
 app.secret_key = env.get("APP_SECRET_KEY")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db.init_app(app)
- 
+Talisman(app, force_https=False) 
 
 with app.app_context():
     db.create_all()
@@ -79,7 +81,7 @@ def save_article_to_database(article):
             id=article.get('id', None),
             title=article.get('title', None),
             author=article.get('by', 'N/A'),
-            likes=0
+            likes=0,
             # Add other fields you want to save
         )
         db.session.add(new_post)
@@ -132,7 +134,6 @@ def require_login(f):
 
 @app.route("/")
 def index():
-
     return redirect("/home")
 
 @app.route("/home")
@@ -170,19 +171,10 @@ def users():
     return render_template('users.html', users=users)
 
 @app.route("/logout")
+@require_login
 def logout():
     session.clear()
-    return redirect(
-        "https://" + env.get("AUTH0_DOMAIN")
-        + "/v2/logout?"
-        + urlencode(
-            {
-                "returnTo": url_for("home", _external=True),
-                "client_id": env.get("AUTH0_CLIENT_ID"),
-            },
-            quote_via=quote_plus,
-        )
-    )
+    return redirect(url_for("user"))
 
 @app.route("/about")
 def about():
@@ -239,7 +231,17 @@ def like_post():
         db.session.commit()
     return redirect("/home")
 
+@app.route("/dislike_post", methods=["POST"])
+def dislike_post():
+    post_id = request.form.get('post_id')
+    post = Post.query.get(post_id)
+    if post:
+        post.likes -= 1
+        db.session.commit()
+    return redirect("/home")
+
 @app.route("/admin")
+@require_login
 def admin():
     posts = Post.query.all()  # Query all posts
     users = User.query.all()  # Query all users
