@@ -1,4 +1,10 @@
-flask>=2.0.3
-python-dotenv>=0.19.2
-authlib>=1.0
-requests>=2.27.1
+asposestorage==1.0.2
+Authlib==1.2.1
+Flask==3.0.0
+flask_sqlalchemy==3.1.1
+flask_talisman==1.1.0
+PyJWT==2.8.0
+PyJWT==2.3.0
+PyJWT==2.8.0
+python-dotenv==1.0.0
+Requests==2.31.0
