@@ -2,7 +2,16 @@
 
 {% block content %}
     <h1>Admin Page</h1>
-    {% for post in posts %}
+
+    {% for user in users %}
+        <h2>{{ user.email }}</h2>
+        <form method="post" action="/remove_user">
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <input type="submit" value="Remove User">
+        </form>
+    {% endfor %}
+    
+    {% for post in posts|reverse %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.content }}</p>
         <form method="post" action="/remove_post">
@@ -14,4 +23,5 @@
             <input type="submit" value="Remove Likes">
         </form>
     {% endfor %}
-{% endblock %}
+
+{% endblock %}home
