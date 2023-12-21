@@ -1,4 +1,4 @@
-#   **COP4521 FINAL PROJECT**
+#   **News Site**
 
 ##  Project Link: https://octobersradio.xyz/
 
